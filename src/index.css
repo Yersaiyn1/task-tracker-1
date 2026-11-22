@@ -1,0 +1,254 @@
+:root {
+  --bg: #f5f6f4;
+  --surface: #ffffff;
+  --text: #1f2a24;
+  --text-muted: #5c6b61;
+  --accent: #2f7d5d;
+  --accent-hover: #276a4e;
+  --accent-soft: #e3f0e9;
+  --border: #d7ded9;
+  --danger: #b3402f;
+  --danger-soft: #f7e8e5;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(31, 42, 36, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
+.app {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 40px 16px 64px;
+}
+
+.app__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 24px;
+}
+
+/* Форма добавления */
+.add-form {
+  margin-bottom: 16px;
+}
+
+.add-form__row {
+  display: flex;
+  gap: 8px;
+}
+
+.add-form__input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.add-form__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.add-form__input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.add-form__input[aria-invalid='true']:focus {
+  box-shadow: 0 0 0 3px var(--danger-soft);
+}
+
+.add-form__submit {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.add-form__submit:hover {
+  background: var(--accent-hover);
+}
+
+.add-form__submit:focus-visible,
+.filters__button:focus-visible,
+.task__checkbox:focus-visible,
+.task__delete:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.add-form__error {
+  margin: 8px 0 0;
+  font-size: 0.875rem;
+  color: var(--danger);
+}
+
+.save-error {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  font-size: 0.875rem;
+  color: var(--danger);
+  background: var(--danger-soft);
+  border: 1px solid var(--danger);
+  border-radius: var(--radius);
+}
+
+/* Фильтры */
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.filters__button {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.filters__button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.filters__button--active {
+  color: #ffffff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Список задач */
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.task__label {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.task__checkbox {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.task__name {
+  overflow-wrap: anywhere;
+}
+
+.task--done .task__name {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.task__status {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--accent-soft);
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.task--done .task__status {
+  color: #ffffff;
+  background: var(--accent);
+}
+
+.task__delete {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  color: var(--danger);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.task__delete:hover {
+  background: var(--danger-soft);
+  border-color: var(--danger);
+}
+
+.empty-message {
+  margin: 24px 0 0;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding-top: 24px;
+  }
+
+  .app__title {
+    font-size: 1.4rem;
+  }
+
+  .add-form__row {
+    flex-direction: column;
+  }
+
+  .add-form__submit {
+    width: 100%;
+  }
+
+  .task {
+    flex-wrap: wrap;
+  }
+
+  .task__label {
+    flex-basis: 100%;
+  }
+}
